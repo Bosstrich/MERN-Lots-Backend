@@ -1,10 +1,12 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const rhemaRoutes = require('./routes/rhemaRoutes');
+const cors = require('cors');
 require('dotenv').config()
 
 const app = express();
 
+app.use(cors());
 app.use((req, res, next) => {
 
     next();

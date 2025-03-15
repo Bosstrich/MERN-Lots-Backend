@@ -14,10 +14,13 @@ const getRhemas = async (req, res) => {
 const getRandomRhema = async(req, res) => {
 
     const rhemaAmount  = parseInt(req.query.size) || 1;
-
+    console.log('Requested size:', req.query.size); // Log the raw query parameter
+    console.log('Parsed size:', rhemaAmount); // Log the parsed size for debugging
     try{
 
         const rhema = await Rhema.aggregate([{$sample: {size: rhemaAmount}}]);
+
+        
         console.log("Rhema fetched:", rhema); // Log the result to see the structure
         res.status(200).json(rhema || {message: 'No Rhema Available'});
     }catch(err) {

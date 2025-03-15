@@ -16,7 +16,9 @@ const getRandomRhema = async(req, res) => {
     const rhemaAmount  = parseInt(req.query.size) || 1;
 
     try{
+
         const rhema = await Rhema.aggregate([{$sample: {size: rhemaAmount}}]);
+        console.log("Rhema fetched:", rhema); // Log the result to see the structure
         res.status(200).json(rhema || {message: 'No Rhema Available'});
     }catch(err) {
 
